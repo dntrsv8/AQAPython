@@ -1,22 +1,9 @@
-import pytest
 import pyautogui
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from helpers import forced_click
-
-
-@pytest.fixture
-def driver_chrome():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
-    yield driver
-    driver.close()
-    driver.quit()
-
+from util.helpers import forced_click
+from conftest import driver_chrome
 
 # Checking that correct page is opened (url)
 def test_open_women_section(driver_chrome):
