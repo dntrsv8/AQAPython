@@ -17,6 +17,44 @@ class BasePage:
     def forced_click(self, element):
         self.driver_chrome.execute_script("arguments[0].click();", element)
 
+    # HW
+    def click_element(self, locator):
+        self.driver_chrome.find_element(*locator).click()
+
+    # HW
+    def click_element_with_mouse(self, locator):
+        element = self.driver_chrome.find_element(*locator)
+        ActionChains(self.driver_chrome).click(element).perform()
+
+    # HW
+    def press_enter(self, locator):
+        element = self.driver_chrome.find_element(*locator)
+        element.send_keys(Keys.ENTER)
+
+    # HW
+    def enter_text(self, locator, text):
+        element = self.driver_chrome.find_element(*locator)
+        element.send_keys(text)
+
+    # HW
+    def clear_text(self, locator):
+        element = self.driver_chrome.find_element(*locator)
+        element.clear()
+
+    # HW
+    def handle_alert(self):
+        alert = self.driver_chrome.switch_to.alert
+        alert.accept()
+
+    # HW
+    def upload_file(self, locator, file_path):
+        element = self.driver_chrome.find_element(*locator)
+        element.send_keys(file_path)
+
+    # HW
+    def set_implicit_wait(self, seconds):
+        self.driver_chrome.implicitly_wait(seconds)
+
     def switch_to_iframe(self, locator):
         iframe_element = self.driver_chrome.find_element(*locator)
         self.driver_chrome.switch_to.frame(iframe_element)
